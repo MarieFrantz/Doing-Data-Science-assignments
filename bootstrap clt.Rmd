@@ -1,0 +1,35 @@
+---
+title: "bootstrap assignment 4"
+author: "Marie Wallmark"
+date: "May 31, 2016"
+output: 
+  html_document:
+    keep_md: true
+---
+#this is to illustrate the Central limit theorem in R markdown:
+```{r}
+n<-30
+nsim<-1000
+bootnorm<-numeric(nsim)
+for (i in 1:nsim){
+  x<-rnorm(n)
+  bootnorm [i]<-median(x)
+}
+summary(bootnorm)
+hist(bootnorm)
+sd (x)
+#using a second sample size
+n<-60
+nsim<-1000
+bootnorm<-numeric(nsim)
+for (i in 1:nsim){
+  x<-rnorm(n)
+  bootnorm [i]<-median(x)
+}
+summary(bootnorm)
+hist(bootnorm)
+sd (x)
+#exponential distribution
+n<-rexp(1000,1/50)
+
+

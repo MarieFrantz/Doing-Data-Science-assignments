@@ -1,0 +1,81 @@
+The SAS System 04:32 Friday, June 17, 2016 1 
+The NPAR1WAY Procedure 
+Wilcoxon Scores (Rank Sums) for Variable Income2005 
+Classified by Variable Educ 
+Educ N 
+Sum of 
+Scores 
+Expected 
+Under H0 
+Std Dev 
+Under H0 
+Mean 
+Score 
+12 1020 1097659.50 1318350.0 18536.1583 1076.13676 
+16 406 653168.50 524755.0 13800.4492 1608.78941 
+13-15 648 819191.00 837540.0 16437.7151 1264.18364 
+>16 374 654733.00 483395.0 13342.3770 1750.62299 
+<12 136 115068.00 175780.0 8467.9138 846.08824 
+Average scores were used for ties. 
+Kruskal-Wallis Test 
+Chi-Square 349.4479 
+DF 4 
+Pr > Chi-Square <.0001 
+0 
+500 
+1000 
+1500 
+2000 
+2500 
+Score 
+12 16 13-15 >16 <12 
+Educ 
+Pr > ChiSq <.0001 
+Distribution of Wilcoxon Scores for Income2005 
+Pr > ChiSq <.0001 
+
+The SAS System 04:32 Friday, June 17, 2016 2 
+The NPAR1WAY Procedure 
+Data Scores for Variable Income2005 
+Classified by Variable Educ 
+Educ N 
+Sum of 
+Scores 
+Expected 
+Under H0 
+Std Dev 
+Under H0 
+Mean 
+Score 
+12 1020 37602194.0 50405338.8 1161044.06 36864.8961 
+16 406 28418771.0 20063301.5 864414.80 69996.9729 
+13-15 648 29079620.0 32022215.2 1029604.47 44875.9568 
+>16 374 28743943.0 18481957.6 835722.66 76855.4626 
+<12 136 3848997.0 6720711.8 530402.30 28301.4485 
+Data Scores One-Way 
+Analysis 
+Chi-Square 315.1983 
+DF 4 
+Pr > Chi-Square <.0001 
+Monte Carlo Estimate for the Exact 
+Test 
+Pr >= Chi-Square 
+Estimate <.0001 
+99% Lower Conf Limit <.0001 
+99% Upper Conf Limit 0.0005 
+Number of Samples 10000 
+Initial Seed 438414000
+
+The SAS System 04:32 Friday, June 17, 2016 3 
+The NPAR1WAY Procedure 
+0 
+200000 
+400000 
+600000 
+Score 
+12 16 13-15 >16 <12 
+Educ 
+Pr > ChiSq <.0001 
+Distribution of Data Scores for Income2005 
+Pr > ChiSq <.0001 
+
