@@ -1,0 +1,83 @@
+---
+title: "case_study6"
+author: "Marie Wallmark"
+date: "June 26, 2016"
+output: 
+  html_document:
+      keep_md: true
+---
+#**An Analysis of GDP and Educational data for 190 countries**
+##Unit 6 Case Study
+## Load data and set working directory
+```{r}
+getwd()
+EDSTATS_Country2 <- read.csv("~/MSDS/case_study/data/EDSTATS_Country2.csv")
+View(EDSTATS_Country2)
+GDP2 <- read.csv("~/MSDS/case_study/data/GDP2.csv")
+View(GDP2)
+```
+#Question 1
+###Match the data based on Country shortcode. How many of the IDs match?
+```{r}
+mergedgdp_ed<-merge(x=EDSTATS_Country2,y=GDP2,by="CountryCode")
+```
+### The new merged dataset contains 189 observations and 37 variables
+#Question 2
+###Sort the data frame in ascending order by GDP rank(so Uniteds is last). What is the 13th country in the resulting data frame?
+```{r}
+mergedgdp_ed3<-mergedgdp_ed[order(mergedgdp_ed$Ranking),]
+```
+###The 13th country in the resulting data frame is Spain.
+#Question 3
+#What are the average GDP rankings for "High income:OECD" and "High income:nonOECD groups?
+###To calculate groupwise summmary statistics,the doBy package is required. 
+```{r}
+library(doBy)
+```
+###A function was created to calculate means by group
+```{r}
+myfun1 <- function(x){c(m=mean(x))}
+```
+###Summaries of data by ranking and income group were generated
+```{r}
+summaryBy(Ranking ~ Income.Group, data=mergedgdp_ed3, FUN=myfun1)
+```
+#The average GDP rankings for the High Income: OECD is 32.97 and for High income:nonOECD groups it is 91.91.
+#Question 4
+###Plot the GDP for all of the countries. Use ggplot2 to color your plot by Income Group.
+###To remove commas from GDP numbers I created a new comma-stripped object
+```{r}
+GDPfig <- as.numeric(gsub(",","",mergedgdp_ed3$X.Millions.US.dollars.))
+```
+###I factorized Income.Group variable into 6 levels in order to color-code them in the plot
+```{r}
+group<-as.factor(mergedgdp_ed3$Income.Group)
+```
+###Plot GDP (y axis) against ranking (x axis), with lables 
+```{r}
+plot(mergedgdp_ed3$Ranking,GDPfig, xlab="ranking", ylab="GDP(millions)", xlim=c(1,200), ylim=c(40,17000000), main="Country GDP", pch=19, cex.main=1.5, frame.plot=FALSE, col=group, cex=0.5)
+```
+#Question 5
+###Cut the GDP ranking into 5 seperate quantile groups. Make a table versus Income.Group. How many countries are lower middle income but among the 38 nations with highest GDP?
+###Quantiles corresponding to ranking were generated and tabulated, allowing me to determine how many countries fall into each of the quantiles.
+```{r}
+qtl<-cut(mergedgdp_ed3$Ranking, breaks=5)
+table(qtl)
+```
+###Data were summarized by "lower middle income" observations and ranking
+```{r}
+summaryBy(Income.Group=="Lower middle income" ~ Ranking, data=mergedgdp_ed3)
+```
+###A new object was created summarizing results of above
+```{r}
+newdata <- summaryBy(Income.Group=="Lower middle income" ~ Ranking, data=mergedgdp_ed3)
+```
+###List of rankings of countries in the "lower middle income" group reveal 5 countries that are in the top quantile in GDP and are also categorized as lower middle income.
+```{r}
+View(newdata)
+```
+#Summary
+###An analysis of global economic data was performed in order to evaluate the relationship between GDP (in US$), ranking, and income group. Data were first cleaned and sorted by ranking. Then, averages were calculated for the "high income: OECD" and "high income: nonOECD" groups. Plotting ranking and income by income group revealed that five countries within the top quartile for GDP are listed as "lower middle income" despite their wealth. One factor that might contribute to this result is population size and wealth distribution: for example, China is the 2nd largest GDP in the world yet "lower middle income.
+
+
+
